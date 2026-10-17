@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Ôn Tập Toán 10 - Thầy Lê Minh Kha</title>
+    <title>DASHBOARD</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -84,7 +84,7 @@
             <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6 mb-8 border border-slate-200 dark:border-slate-800 transition-colors">
                 <h2 class="text-2xl font-bold text-indigo-900 dark:text-indigo-400 mb-2">ĐỀ ÔN TẬP GIỮA KÌ I - TOÁN 10</h2>
                 <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                    Thời gian làm bài: 90 phút. (Sưu tầm và Biên soạn: Lê Minh Kha - 0399653362).
+                    Thời gian làm bài: 90 phút..
                 </p>
             </div>
 
@@ -233,7 +233,6 @@
                     isAdminMode = true;
                     closeLoginModal();
                     
-                    // Dừng đồng hồ đếm giờ khi vào chế độ quản trị
                     if (timerInterval) {
                         clearInterval(timerInterval);
                         timerInterval = null;
@@ -260,7 +259,7 @@
             document.getElementById('export-json-btn').classList.add('hidden');
             document.getElementById('admin-logout-btn').classList.add('hidden');
             renderQuestions();
-            startTimer(); // Khởi động lại đồng hồ khi thoát
+            startTimer();
             alert("Đã đăng xuất khỏi chế độ quản trị.");
         }
 
@@ -279,7 +278,6 @@
             modifiedQuestions.add(qId);
             sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
             
-            // Cập nhật giao diện nút trên bảng điều hướng ngay lập tức
             const btn = document.getElementById(`nav-btn-${qId}`);
             if (btn && !btn.innerHTML.includes('dot')) {
                 btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-amber-500 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 transition flex items-center justify-center shadow-sm relative";
@@ -303,7 +301,6 @@
             questionsData[qIndex].options[optIndex].text = value;
             markAsModified(questionsData[qIndex].id, qIndex);
             
-            // Cập nhật hiển thị đáp án trực tiếp ngoài giao diện
             const qId = questionsData[qIndex].id;
             const optKey = questionsData[qIndex].options[optIndex].key;
             const contentSpan = document.querySelector(`.opt-content-${qId}-${optKey}`);
@@ -344,7 +341,7 @@
                 q.options.forEach(opt => {
                     let displayedText = formatOptionText(opt.text);
                     optionsHtml += `
-                        <label class="option-label-${q.id}-${opt.key} flex items-start space-x-3 p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer border border-transparent transition">
+                        <label id="label-q${q.id}-${opt.key}" class="option-item-${q.id} flex items-start space-x-3 p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer border border-transparent transition">
                             <input type="radio" name="q_${q.id}" value="${opt.key}" onchange="updateNavStatus(${q.id})" class="mt-1 text-indigo-600 h-4 w-4">
                             <span class="text-slate-700 dark:text-slate-200 text-sm md:text-base flex-1"><b>${opt.key}.</b> <span class="opt-content-${q.id}-${opt.key}">${displayedText}</span></span>
                         </label>
@@ -446,7 +443,7 @@
 
         function startTimer() {
             if (timerInterval) clearInterval(timerInterval);
-            if (isAdminMode) return; // Không đếm giờ nếu đang ở chế độ quản trị
+            if (isAdminMode) return;
             
             timeLeft = 90 * 60;
             timerInterval = setInterval(() => {
@@ -460,13 +457,42 @@
 
         function submitExam() {
             let correct = 0, incorrect = 0;
+
             questionsData.forEach(q => {
-                const sel = document.querySelector(`input[name="q_${q.id}"]:checked`);
-                document.getElementById(`explanation-${q.id}`).classList.remove('hidden');
+                const selectedInput = document.querySelector(`input[name="q_${q.id}"]:checked`);
+                const correctKey = (q.correct || "").trim().toUpperCase();
                 
-                if (sel && sel.value === q.correct) correct++;
-                else incorrect++;
+                // Hiển thị lời giải chi tiết
+                document.getElementById(`explanation-${q.id}`).classList.remove('hidden');
+
+                // Highlight các đáp án
+                q.options.forEach(opt => {
+                    const labelElem = document.getElementById(`label-q${q.id}-${opt.key}`);
+                    if (!labelElem) return;
+
+                    // Xóa style cũ
+                    labelElem.classList.remove('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500');
+
+                    if (opt.key === correctKey) {
+                        // Đáp án đúng: Tô màu Xanh sáng (Highlight)
+                        labelElem.classList.add('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'border');
+                    } else if (selectedInput && selectedInput.value === opt.key && opt.key !== correctKey) {
+                        // Học sinh chọn sai: Tô màu Đỏ viền đỏ
+                        labelElem.classList.add('bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500', 'border');
+                    }
+                });
+
+                if (selectedInput && selectedInput.value === correctKey) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
             });
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
 
             const score = (correct * (10 / questionsData.length)).toFixed(2);
             document.getElementById('score-display').textContent = score;
@@ -480,6 +506,12 @@
         function resetExam() {
             document.getElementById('result-modal').classList.add('hidden');
             document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            
+            // Xóa toàn bộ highlight màu sắc khi làm lại
+            document.querySelectorAll('[id^="label-q"]').forEach(label => {
+                label.classList.remove('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500', 'border');
+            });
+
             loadData(document.getElementById('select-de').value);
         }
 
