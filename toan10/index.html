@@ -84,7 +84,7 @@
             <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6 mb-8 border border-slate-200 dark:border-slate-800 transition-colors">
                 <h2 class="text-2xl font-bold text-indigo-900 dark:text-indigo-400 mb-2">ĐỀ ÔN TẬP GIỮA KÌ I - TOÁN 10</h2>
                 <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                    Thời gian làm bài: 90 phút.
+                    Thời gian làm bài: 90 phút. 
                 </p>
             </div>
 
@@ -276,7 +276,6 @@
 
         function markAsModified(qId) {
             modifiedQuestions.add(qId);
-            // Lưu trực tiếp vào bộ nhớ session để ghi nhận thay đổi tức thì
             sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
             
             const btn = document.getElementById(`nav-btn-${qId}`);
@@ -289,6 +288,14 @@
         function updateQuestionText(index, value) {
             questionsData[index].text = value;
             markAsModified(questionsData[index].id);
+            
+            // Cập nhật trực tiếp lên giao diện ngay khi gõ
+            const qId = questionsData[index].id;
+            const textElem = document.querySelector(`.question-text-content-${qId}`);
+            if (textElem) {
+                textElem.innerHTML = value;
+            }
+            if (window.MathJax) MathJax.typesetPromise();
         }
 
         function updateQuestionImage(index, value) {
@@ -403,7 +410,7 @@
                 card.id = `question-card-${q.id}`;
                 card.className = "bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-5 md:p-6 transition transition-colors";
                 card.innerHTML = `
-                    <div class="font-medium text-slate-900 dark:text-slate-100 text-base md:text-lg mb-3 leading-relaxed">${q.text}</div>
+                    <div class="font-medium text-slate-900 dark:text-slate-100 text-base md:text-lg mb-3 leading-relaxed question-text-content-${q.id}">${q.text}</div>
                     <div id="img-container-${q.id}">${imageHtml}</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">${optionsHtml}</div>
                     ${editBoxHtml}
