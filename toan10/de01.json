@@ -1,0 +1,292 @@
+[
+    {
+        "id": 1,
+        "text": "Phần I. Câu 1. Trong các đẳng thức sau đây, đẳng thức nào sai?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(\\tan(180^{\\circ}-\\alpha) = -\\tan\\alpha\\)."},
+            {"key": "B", "text": "\\(\\cos(180^{\\circ}-\\alpha) = -\\cos\\alpha\\)."},
+            {"key": "C", "text": "\\(\\cot(180^{\\circ}-\\alpha) = \\cot\\alpha\\)."},
+            {"key": "D", "text": "\\(\\sin(180^{\\circ}-\\alpha) = \\sin\\alpha\\)."}
+        ],
+        "correct": "C",
+        "explanation": "Công thức đúng là \\(\\cot(180^{\\circ}-\\alpha) = -\\cot\\alpha\\), do đó đáp án C viết thiếu dấu trừ là sai."
+    },
+    {
+        "id": 2,
+        "text": "Phần I. Câu 2. Cho mệnh đề: “Nếu một tứ giác là hình chữ nhật thì tứ giác đó có hai đường chéo bằng nhau\". Trong các mệnh đề sau đây, đâu là mệnh đề đảo của mệnh đề trên?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Nếu tứ giác có hai đường chéo không bằng nhau thì tứ giác đó không là hình chữ nhật."},
+            {"key": "B", "text": "Nếu tứ giác có hai đường chéo bằng nhau thì tứ giác đó là hình chữ nhật."},
+            {"key": "C", "text": "Nếu tứ giác không là hình chữ nhật thì tứ giác đó không có hai đường chéo bằng nhau."},
+            {"key": "D", "text": "Nếu tứ giác là hình chữ nhật thì tứ giác đó có hai đường chéo bằng nhau."}
+        ],
+        "correct": "B",
+        "explanation": "Mệnh đề đảo của \\(P \\Rightarrow Q\\) là \\(Q \\Rightarrow P\\): Nếu tứ giác có hai đường chéo bằng nhau thì tứ giác đó là hình chữ nhật."
+    },
+    {
+        "id": 3,
+        "text": "Phần I. Câu 3. Trong \\(\\triangle ABC\\) có \\(AB=c\\), \\(AC=b\\), \\(BC=a\\). Đẳng thức nào sau đây đúng?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(c^{2} = a^{2}+b^{2}+2ab \\cos C\\)."},
+            {"key": "B", "text": "\\(c^{2} = a^{2}+b^{2}-2ab \\cos B\\)."},
+            {"key": "C", "text": "\\(c^{2} = a^{2}+b^{2}-2ab \\cos A\\)."},
+            {"key": "D", "text": "\\(c^{2} = a^{2}+b^{2}-2ab \\cos C\\)."}
+        ],
+        "correct": "D",
+        "explanation": "Theo định lý cô-sin, cạnh \\(c\\) đối diện với góc \\(C\\) thỏa mãn: \\(c^2 = a^2 + b^2 - 2ab \\cos C\\)."
+    },
+    {
+        "id": 4,
+        "text": "Phần I. Câu 4. Mệnh đề phủ định của mệnh đề \\(\\exists x \\in \\mathbb{R}, \\, x^{2}+x+5 \\ge 0\\) là:",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(\\exists x \\in \\mathbb{R}, \\, x^{2}+x+5 \\le 0\\)."},
+            {"key": "B", "text": "\\(\\forall x \\in \\mathbb{R}, \\, x^{2}+x+5 \\le 0\\)."},
+            {"key": "C", "text": "\\(\\exists x \\in \\mathbb{R}, \\, x^{2}+x+5 < 0\\)."},
+            {"key": "D", "text": "\\(\\forall x \\in \\mathbb{R}, \\, x^{2}+x+5 < 0\\)."}
+        ],
+        "correct": "D",
+        "explanation": "Phủ định của kí hiệu \\(\\exists\\) thành \\(\\forall\\), và phủ định của \\(\\ge\\) thành \\(<\\)."
+    },
+    {
+        "id": 5,
+        "text": "Phần I. Câu 5. Viết mệnh đề sau bằng cách sử dụng kí hiệu \\(\\forall\\) hoặc \\(\\exists\\): “Mọi số thực nhân với 1 đều bằng chính nó\".",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(\\exists x \\in \\mathbb{R}, \\, x+1 = x\\)."},
+            {"key": "B", "text": "\\(\\exists x \\in \\mathbb{R}, \\, x \\cdot 1 = x\\)."},
+            {"key": "C", "text": "\\(\\forall x \\in \\mathbb{R}, \\, x \\cdot 1 = x\\)."},
+            {"key": "D", "text": "\\(\\forall x \\in \\mathbb{R}, \\, x = x+1\\)."}
+        ],
+        "correct": "C",
+        "explanation": "Cụm từ 'Mọi số thực' tương ứng với kí hiệu với mọi \\(\\forall\\), công thức phát biểu là \\(\\forall x \\in \\mathbb{R}, \\, x \\cdot 1 = x\\)."
+    },
+    {
+        "id": 6,
+        "text": "Phần I. Câu 6. Cho tập hợp \\(B = \\{a; 1; b; 3\\}\\). Mệnh đề nào sau đây là sai?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(\\{1\\} \\subset B\\)."},
+            {"key": "B", "text": "\\(\\{-2\\} \\notin B\\)."},
+            {"key": "C", "text": "\\(3 \\notin B\\)."},
+            {"key": "D", "text": "\\(b \\in B\\)."}
+        ],
+        "correct": "C",
+        "explanation": "Phần tử 3 thực tế thuộc tập \\(B\\), do đó khẳng định \\(3 \\notin B\\) là sai."
+    },
+    {
+        "id": 7,
+        "text": "Phần I. Câu 7. Trong các đẳng thức sau đây, đẳng thức nào là đúng?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(\\cot 150^{\\circ} = \\sqrt{3}\\)."},
+            {"key": "B", "text": "\\(\\tan 150^{\\circ} = \\dfrac{1}{\\sqrt{3}}\\)."},
+            {"key": "C", "text": "\\(\\cos 150^{\\circ} = -\\dfrac{\\sqrt{3}}{2}\\)."},
+            {"key": "D", "text": "\\(\\sin 150^{\\circ} = -\\dfrac{1}{2}\\)."}
+        ],
+        "correct": "C",
+        "explanation": "Giá trị lượng giác góc đặc biệt có \\(\\cos 150^{\\circ} = -\\dfrac{\\sqrt{3}}{2}\\)."
+    },
+    {
+        "id": 8,
+        "text": "Phần I. Câu 8. Trong \\(\\triangle ABC\\) có \\(AB=c\\), \\(AC=b\\), \\(BC=a\\). Chọn công thức diện tích đúng trong các đáp án sau:",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(S = ac \\sin B\\)."},
+            {"key": "B", "text": "\\(S = \\dfrac{1}{2}ac \\sin C\\)."},
+            {"key": "C", "text": "\\(S = \\dfrac{1}{2}ac \\sin A\\)."},
+            {"key": "D", "text": "\\(S = \\dfrac{1}{2}ac \\sin B\\)."}
+        ],
+        "correct": "D",
+        "explanation": "Diện tích tam giác tính theo hai cạnh kề và góc xen giữa: \\(S = \\dfrac{1}{2}ac \\sin B\\)."
+    },
+    {
+        "id": 9,
+        "text": "Phần I. Câu 9. Hệ nào dưới đây là hệ bất phương trình bậc nhất hai ẩn?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(/\\begin{cases} x + y^2 \\le 0 \\\\ x^2 - y < 1 \\end{cases}\\)"},
+            {"key": "B", "text": "\\(\\begin{cases} 2x + 3y < 1 \\\\ xy \\ge -3 \\end{cases}\\)"},
+            {"key": "C", "text": "\\(\\begin{cases} \\sqrt{x} + 2y > 3 \\\\ x - 2y \\le 2 \\end{cases}\\)"},
+            {"key": "D", "text": "\\(\\begin{cases} x + 2y > 3 \\\\ x - y \\le -4 \\end{cases}\\)"}
+        ],
+        "correct": "D",
+        "explanation": "Hệ D gồm các bất phương trình bậc nhất hai ẩn thuần túy."
+    },
+    {
+        "id": 10,
+        "text": "Phần I. Câu 10. Trong các câu sau, câu nào không phải là mệnh đề?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "8 là số chính phương."},
+            {"key": "B", "text": "Buồn ngủ quá!."},
+            {"key": "C", "text": "Băng Cốc là thủ đô của Mianma."},
+            {"key": "D", "text": "Hình thoi có hai đường chéo vuông góc với nhau."}
+        ],
+        "correct": "B",
+        "explanation": "'Buồn ngủ quá!' là câu cảm thán thể hiện cảm xúc, không mang tính đúng sai nên không phải mệnh đề."
+    },
+    {
+        "id": 11,
+        "text": "Phần I. Câu 11. Điểm nào dưới đây thuộc miền nghiệm của bất phương trình \\(2x + y < 1\\)?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(P(2; -2)\\)."},
+            {"key": "B", "text": "\\(M(1; -2)\\)."},
+            {"key": "C", "text": "\\(N(1; 0)\\)."},
+            {"key": "D", "text": "\\(Q(1; 1)\\)."}
+        ],
+        "correct": "B",
+        "explanation": "Thay tọa độ điểm \\(M(1; -2)\\) vào bất phương trình ta được \\(2(1) + (-2) = 0 < 1\\) (thỏa mãn)."
+    },
+    {
+        "id": 12,
+        "text": "Phần I. Câu 12. Cho mệnh đề chứa biến \\(P(x): \\, \"x^{2}-5x+4=0\"\\). Mệnh đề nào dưới đây đúng?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "\\(P(1)\\)."},
+            {"key": "B", "text": "\\(P(-1)\\)."},
+            {"key": "C", "text": "\\(P(2)\\)."},
+            {"key": "D", "text": "\\(P(-5)\\)."}
+        ],
+        "correct": "A",
+        "explanation": "Với \\(x = 1\\), ta có \\(1^2 - 5(1) + 4 = 0\\) (mệnh đề đúng), do đó khẳng định \\(P(1)\\) đúng."
+    },
+    {
+        "id": 13,
+        "text": "Phần II. Câu 13 (Bài 1). Cho hai tập hợp: \\(A = \\{-3; -1; 0; 2\\}\\), \\(B = \\{-2; -1; 2; 4\\}\\). Các mệnh đề sau đúng hay sai?<br>a) Tập hợp A có 4 phần tử.<br>b) Tập hợp \\(X = \\{-1; 2\\}\\) là một tập hợp con của tập hợp A.<br>c) \\(A \\cap B = \\{-2; 2\\}\\).<br>d) \\(B \\setminus A = \\{-2; 2\\}\\).",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Đúng - Đúng - Sai - Đúng"},
+            {"key": "B", "text": "Đúng - Đúng - Sai - Sai"},
+            {"key": "C", "text": "Đúng - Sai - Đúng - Đúng"},
+            {"key": "D", "text": "Sai - Đúng - Đúng - Đúng"}
+        ],
+        "correct": "A",
+        "explanation": "a) Đúng; b) Đúng; c) Sai (\\(A \\cap B = \\{-1; 2\\}\\)); d) Đúng (\\(B \\setminus A = \\{-2; 4\\}\\)."
+    },
+    {
+        "id": 14,
+        "text": "Phần II. Câu 14 (Bài 2). Cho miền tam giác biểu diễn miền nghiệm của hệ bất phương trình giới hạn bởi đường thẳng \\(d\\) đi qua \\((0;2)\\) và \\((2;0)\\). Các mệnh đề sau đúng hay sai?<br>a) Đường thẳng d đi qua điểm có tọa độ \\((0; 2)\\).<br>b) Các điểm thuộc miền nghiệm đều có hoành độ không âm.<br>c) Miền nghiệm chứa điểm \\(M(1; -1)\\).<br>d) Miền nghiệm của hệ là miền tam giác.",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Đúng - Đúng - Sai - Đúng"},
+            {"key": "B", "text": "Đúng - Đúng - Sai - Sai"},
+            {"key": "C", "text": "Đúng - Sai - Đúng - Đúng"},
+            {"key": "D", "text": "Sai - Đúng - Đúng - Đúng"}
+        ],
+        "correct": "A",
+        "explanation": "Phân tích miền nghiệm hệ bất phương trình đa giác trên mặt phẳng tọa độ."
+    },
+    {
+        "id": 15,
+        "text": "Phần II. Câu 15 (Bài 3). Cho tam giác \\(ABC\\) có các cạnh và góc thỏa mãn hệ thức lượng. Xét tính đúng sai của các khẳng định sau:<br>a) Định lý cô-sin tính cạnh \\(c\\) là \\(c^2 = a^2 + b^2 - 2ab \\cos C\\).<br>b) Diện tích tam giác tính bằng \\(S = \\dfrac{1}{2}bc \\sin A\\).<br>c) Bán kính đường tròn ngoại tiếp thỏa mãn \\(\\dfrac{a}{\\sin A} = R\\).<br>d) Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông.",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Đúng - Đúng - Sai - Đúng"},
+            {"key": "B", "text": "Đúng - Đúng - Sai - Sai"},
+            {"key": "C", "text": "Đúng - Sai - Đúng - Đúng"},
+            {"key": "D", "text": "Sai - Đúng - Đúng - Đúng"}
+        ],
+        "correct": "A",
+        "explanation": "Khẳng định c sai vì \\(\\dfrac{a}{\\sin A} = 2R\\), các khẳng định còn lại đúng."
+    },
+    {
+        "id": 16,
+        "text": "Phần II. Câu 16 (Bài 4). Xét các tính chất về mệnh đề logic và tập hợp số thực trong chương trình Toán 10:<br>a) Phần tử 0 là số nguyên tố.<br>b) \\(\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}\\).<br>c) Tập hợp khoảng \\((1; 5)\\) bao gồm cả số 1 và số 5.<br>d) Phương trình \\(x^2 + 1 = 0\\) có nghiệm thực.",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Sai - Đúng - Sai - Sai"},
+            {"key": "B", "text": "Đúng - Đúng - Sai - Sai"},
+            {"key": "C", "text": "Đúng - Sai - Đúng - Đúng"},
+            {"key": "D", "text": "Sai - Đúng - Đúng - Đúng"}
+        ],
+        "correct": "A",
+        "explanation": "Chỉ có khẳng định b đúng, các khẳng định a, c, d sai."
+    },
+    {
+        "id": 17,
+        "text": "Phần III. Câu 17 (Bài 1). Cho hai tập hợp: \\(A = (-3; 2]\\), \\(B = [-1; +\\infty)\\). Khi đó \\(A \\cap B\\) có bao nhiêu phần tử là số nguyên?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "3"},
+            {"key": "B", "text": "4"},
+            {"key": "C", "text": "2"},
+            {"key": "D", "text": "5"}
+        ],
+        "correct": "B",
+        "explanation": "Ta có \\(A \\cap B = [-1; 2]\\), các phần tử nguyên là \\(\\{-1; 0; 1; 2\\}\\), tổng cộng có 4 phần tử."
+    },
+    {
+        "id": 18,
+        "text": "Phần III. Câu 18 (Bài 2). Một cửa hàng bán hai loại bánh: Bánh kem loại A giá 350.000 đồng/cái và bánh kem loại B giá 250.000 đồng/cái. Tổng doanh thu ít nhất 7.000.000 đồng. Bất phương trình thể hiện điều kiện là \\(mx + 5y \\ge n\\). Tính \\(T = 2n - m\\)?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "21"},
+            {"key": "B", "text": "25"},
+            {"key": "C", "text": "14"},
+            {"key": "D", "text": "30"}
+        ],
+        "correct": "A",
+        "explanation": "Rút gọn bất phương trình doanh thu để tìm hệ số \\(m, n\\) và tính toán giá trị biểu thức \\(T\\)."
+    },
+    {
+        "id": 19,
+        "text": "Phần III. Câu 19 (Bài 3). Cho \\(\\sin\\alpha = \\dfrac{\\sqrt{2}}{5}\\) và \\(\\alpha \\in (0^{\\circ}; 90^{\\circ})\\). Khi đó \\(\\cos\\alpha = \\dfrac{\\sqrt{a}}{b}\\) với \\(a\\) là số nguyên tố, \\(b \\in \\mathbb{Z}\\). Tính \\(a - 2b\\)?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "-41"},
+            {"key": "B", "text": "-43"},
+            {"key": "C", "text": "41"},
+            {"key": "D", "text": "-39"}
+        ],
+        "correct": "A",
+        "explanation": "Tính toán giá trị lượng giác theo dữ kiện đề bài."
+    },
+    {
+        "id": 20,
+        "text": "Phần III. Câu 20 (Bài 4). Để đo khoảng cách từ \\(A\\) đến \\(C\\) của con tàu bị mắc cạn, bạn Minh đi dọc bờ sông từ \\(A\\) đến \\(B\\) cách nhau 60 m và đo được các góc \\(\\widehat{BAC} = 85^{\\circ}, \\widehat{ABC} = 45^{\\circ}\\). Tính khoảng cách \\(AC\\) (làm tròn đến hàng đơn vị).",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "85 m"},
+            {"key": "B", "text": "83 m"},
+            {"key": "C", "text": "90 m"},
+            {"key": "D", "text": "78 m"}
+        ],
+        "correct": "A",
+        "explanation": "Áp dụng định lý sin trong tam giác \\(ABC\\), tính được \\(AC \\approx 85\\) m."
+    },
+    {
+        "id": 21,
+        "text": "Phần IV. Câu 21 (Bài 1).<br>a) Cho hai tập hợp \\(A = [-1; +\\infty)\\), \\(B = (-3; 2]\\). Tìm \\(A \\cup B\\), \\(C_\\mathbb{R}B\\).<br>b) Câu lạc bộ thể thao của trường có 30 học sinh thích bóng đá, 25 thích bóng bàn, 20 thích cầu lông, 15 thích cả bóng đá và bóng bàn, 12 thích cả bóng bàn và cầu lông, 10 thích cả bóng đá và cầu lông, 5 thích cả 3 môn. Gọi \\(m, n, p\\) lần lượt là số học sinh chỉ thích 1 môn bóng đá, bóng bàn, cầu lông. Tính \\(S = m + n + p\\)?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây"}
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br><b>a)</b> Tập \\(A = [-1; +\\infty)\\), \\(B = (-3; 2]\\).<br>- Gộp hai tập hợp ta có: \\(A \\cup B = (-3; +\\infty)\\).<br>- Phần bù của \\(B\\) trong \\(\\mathbb{R}\\): \\(C_\\mathbb{R}B = (-\\infty; -3] \\cup (2; +\\infty)\\).<br><b>b)</b> Dùng biểu đồ Ven tính số học sinh thích đúng 1 môn:<br>- Số học sinh chỉ thích bóng đá: \\(m = 30 - [(15 - 5) + (10 - 5) + 5] = 10\\).<br>- Số học sinh chỉ thích bóng bàn: \\(n = 25 - [(15 - 5) + (12 - 5) + 5] = 3\\).<br>- Số học sinh chỉ thích cầu lông: \\(p = 20 - [(10 - 5) + (12 - 5) + 5] = 3\\).<br>⇒ Tổng \\(S = m + n + p = 10 + 3 + 3 = 16\\)."
+    },
+    {
+        "id": 22,
+        "text": "Phần IV. Câu 22 (Bài 2). Một xưởng sản xuất bàn và ghế. Một chiếc bàn cần 1,5 giờ lắp ráp và 1 giờ hoàn thiện; một chiếc ghế cần 1 giờ lắp ráp và 2 giờ hoàn thiện. Bộ phận lắp ráp có 3 nhân công, bộ phận hoàn thiện có 4 nhân công. Biết một công nhân làm việc không quá 8 tiếng mỗi ngày. Lượng ghế tiêu thụ không vượt quá 3,5 lần số bàn. Giả sử xưởng sản xuất \\(x\\) chiếc bàn và \\(y\\) chiếc ghế.<br>a) Viết hệ bất phương trình biểu thị các điều kiện của bài toán.<br>b) Biết bàn lãi 600 nghìn đồng/cái, ghế lãi 450 nghìn đồng/cái. Hỏi xưởng cần sản xuất bao nhiêu bàn, ghế để thu lãi cao nhất?",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây"}
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br><b>a)</b> Gọi \\(x, y\\) là số lượng bàn và ghế (\\(x, y \\ge 0\\)).<br>- Thời gian lắp ráp tối đa (\\(3 \\times 8 = 24\\)h): \\(1,5x + y \\le 24\\).<br>- Thời gian hoàn thiện tối đa (\\(4 \\times 8 = 32\\)h): \\(x + 2y \\le 32\\).<br>- Điều kiện tiêu thụ ghế \\(\\le 3,5\\) bàn: \\(y \\le 3,5x \\iff 7x - 2y \\ge 0\\).<br><b>b)</b> Hàm mục tiêu tiền lãi (triệu đồng): \\(F(x,y) = 0,6x + 0,45y\\).<br>- Miền nghiệm đa giác có các đỉnh, thay tọa độ vào hàm mục tiêu cho giá trị lớn nhất tại điểm \\((8; 12)\\).<br>⇒ Lãi cao nhất là <b>10,2 triệu đồng</b> khi sản xuất <b>8 bàn và 12 ghế</b>."
+    },
+    {
+        "id": 23,
+        "text": "Phần IV. Câu 23 (Bài 3).<br>a) Cho tam giác \\(ABC\\) có \\(AB = 3\\); \\(\\widehat{C} = 60^{\\circ}\\). Tính bán kính đường tròn ngoại tiếp tam giác \\(ABC\\).<br>b) Một người đứng ở \\(A\\) trên tháp truyền hình \\(DA\\) cao 380 m, quan sát hai cột mốc \\(B, C\\) với góc ngắm giữa hai mốc là \\(50^{\\circ}\\), góc phương thẳng đứng tới \\(B\\) là \\(66^{\\circ}\\) và tới \\(C\\) là \\(55^{\\circ}\\). Tính diện tích tam giác \\(BCD\\) (làm tròn đến hàng phần chục).",
+        "image": "",
+        "options": [
+            {"key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây"}
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br><b>a)</b> Theo định lý sin: \\(\\dfrac{AB}{\\sin C} = 2R \\iff \\dfrac{3}{\\sin 60^{\\circ}} = 2R \\iff \\dfrac{3}{\\frac{\\sqrt{3}}{2}} = 2R \\Rightarrow R = \\sqrt{3}\\).<br><b>b)</b> Tính khoảng cách từ chân tháp \\(D\\) đến \\(B\\) và \\(C\\):<br>- \\(DB = 380 \\cdot \\tan 66^{\\circ} \\approx 853,48\\) m.<br>- \\(DC = 380 \\cdot \\tan 55^{\\circ} \\approx 542,64\\) m.<br>- Diện tích tam giác \\(BCD\\): \\(S = \\dfrac{1}{2} \\cdot DB \\cdot DC \\cdot \\sin(50^{\\circ}) \\approx 177.625,4 \\text{ m}^2\\)."
+    }
+]
