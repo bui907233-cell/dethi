@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD</title>
+    <title>DashBoard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -84,7 +84,7 @@
             <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6 mb-8 border border-slate-200 dark:border-slate-800 transition-colors">
                 <h2 class="text-2xl font-bold text-indigo-900 dark:text-indigo-400 mb-2">ĐỀ ÔN TẬP GIỮA KÌ I - TOÁN 10</h2>
                 <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                    Thời gian làm bài: 90 phút..
+                    Thời gian làm bài: 90 phút.
                 </p>
             </div>
 
@@ -274,8 +274,9 @@
             alert("Đã tải xuống file .json sạch sẽ! Thầy đưa file này lên GitHub là hoàn tất cập nhật.");
         }
 
-        function markAsModified(qId, index) {
+        function markAsModified(qId) {
             modifiedQuestions.add(qId);
+            // Lưu trực tiếp vào bộ nhớ session để ghi nhận thay đổi tức thì
             sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
             
             const btn = document.getElementById(`nav-btn-${qId}`);
@@ -285,21 +286,34 @@
             }
         }
 
-        function updateQuestionData(qIndex, field, value) {
-            questionsData[qIndex][field] = value;
-            markAsModified(questionsData[qIndex].id, qIndex);
+        function updateQuestionText(index, value) {
+            questionsData[index].text = value;
+            markAsModified(questionsData[index].id);
+        }
+
+        function updateQuestionImage(index, value) {
+            questionsData[index].image = value;
+            markAsModified(questionsData[index].id);
             
-            if (field === 'image') {
-                const imgContainer = document.getElementById(`img-container-${questionsData[qIndex].id}`);
-                if (imgContainer) {
-                    imgContainer.innerHTML = value ? `<img src="${convertDriveUrl(value)}" class="question-image" alt="Hình minh họa">` : '';
-                }
+            const imgContainer = document.getElementById(`img-container-${questionsData[index].id}`);
+            if (imgContainer) {
+                imgContainer.innerHTML = value ? `<img src="${convertDriveUrl(value)}" class="question-image" alt="Hình minh họa">` : '';
             }
+        }
+
+        function updateQuestionCorrect(index, value) {
+            questionsData[index].correct = value.toUpperCase();
+            markAsModified(questionsData[index].id);
+        }
+
+        function updateQuestionExplanation(index, value) {
+            questionsData[index].explanation = value;
+            markAsModified(questionsData[index].id);
         }
 
         function updateOptionData(qIndex, optIndex, value) {
             questionsData[qIndex].options[optIndex].text = value;
-            markAsModified(questionsData[qIndex].id, qIndex);
+            markAsModified(questionsData[qIndex].id);
             
             const qId = questionsData[qIndex].id;
             const optKey = questionsData[qIndex].options[optIndex].key;
@@ -357,11 +371,11 @@
                             <h4 class="text-xs font-bold uppercase text-amber-800 dark:text-amber-400">✏️ Chỉnh sửa câu ${q.id}</h4>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nội dung câu hỏi:</label>
-                                <textarea rows="2" oninput="updateQuestionData(${index}, 'text', this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">${q.text}</textarea>
+                                <textarea rows="2" oninput="updateQuestionText(${index}, this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">${q.text}</textarea>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Link ảnh minh họa câu hỏi (Google Drive):</label>
-                                <input type="text" value="${q.image || ''}" oninput="updateQuestionData(${index}, 'image', this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100" placeholder="https://drive.google.com/file/d/...">
+                                <input type="text" value="${q.image || ''}" oninput="updateQuestionImage(${index}, this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100" placeholder="https://drive.google.com/file/d/...">
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 ${q.options.map((opt, optIdx) => `
@@ -374,11 +388,11 @@
                             <div class="flex items-center space-x-4">
                                 <div>
                                     <label class="text-xs font-semibold text-slate-600 dark:text-slate-300">Đ/A đúng:</label>
-                                    <input type="text" value="${q.correct}" maxlength="1" oninput="updateQuestionData(${index}, 'correct', this.value.toUpperCase())" class="w-12 text-center text-xs p-1 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 font-bold text-indigo-600 dark:text-indigo-400">
+                                    <input type="text" value="${q.correct}" maxlength="1" oninput="updateQuestionCorrect(${index}, this.value)" class="w-12 text-center text-xs p-1 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 font-bold text-indigo-600 dark:text-indigo-400">
                                 </div>
                                 <div class="flex-1">
                                     <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Lời giải chi tiết:</label>
-                                    <input type="text" value="${q.explanation}" oninput="updateQuestionData(${index}, 'explanation', this.value)" class="w-full text-xs p-1.5 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+                                    <input type="text" value="${q.explanation}" oninput="updateQuestionExplanation(${index}, this.value)" class="w-full text-xs p-1.5 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
                                 </div>
                             </div>
                         </div>
@@ -462,22 +476,17 @@
                 const selectedInput = document.querySelector(`input[name="q_${q.id}"]:checked`);
                 const correctKey = (q.correct || "").trim().toUpperCase();
                 
-                // Hiển thị lời giải chi tiết
                 document.getElementById(`explanation-${q.id}`).classList.remove('hidden');
 
-                // Highlight các đáp án
                 q.options.forEach(opt => {
                     const labelElem = document.getElementById(`label-q${q.id}-${opt.key}`);
                     if (!labelElem) return;
 
-                    // Xóa style cũ
                     labelElem.classList.remove('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500');
 
                     if (opt.key === correctKey) {
-                        // Đáp án đúng: Tô màu Xanh sáng (Highlight)
                         labelElem.classList.add('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'border');
                     } else if (selectedInput && selectedInput.value === opt.key && opt.key !== correctKey) {
-                        // Học sinh chọn sai: Tô màu Đỏ viền đỏ
                         labelElem.classList.add('bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500', 'border');
                     }
                 });
@@ -507,7 +516,6 @@
             document.getElementById('result-modal').classList.add('hidden');
             document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
             
-            // Xóa toàn bộ highlight màu sắc khi làm lại
             document.querySelectorAll('[id^="label-q"]').forEach(label => {
                 label.classList.remove('bg-emerald-100', 'dark:bg-emerald-950/60', 'border-emerald-500', 'bg-rose-100', 'dark:bg-rose-950/60', 'border-rose-500', 'border');
             });
