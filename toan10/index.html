@@ -160,6 +160,7 @@
         let timerInterval = null;
         let timeLeft = 90 * 60;
         let isAdminMode = false;
+        let modifiedQuestions = new Set(); // Lưu vết câu hỏi đã sửa
 
         async function loadData(jsonFile) {
             document.getElementById('loading-box').style.display = 'block';
@@ -171,7 +172,7 @@
                     questionsData = JSON.parse(sessionData);
                     document.getElementById('loading-box').style.display = 'none';
                     renderQuestions();
-                    startTimer();
+                    if (!isAdminMode) startTimer();
                     return;
                 } catch(e) {}
             }
@@ -181,7 +182,7 @@
                 questionsData = await response.json();
                 document.getElementById('loading-box').style.display = 'none';
                 renderQuestions();
-                startTimer();
+                if (!isAdminMode) startTimer();
             } catch (error) {
                 console.error('Lỗi tải dữ liệu:', error);
                 document.getElementById('loading-box').innerHTML = '<p class="text-rose-500">Không thể tải được file dữ liệu đề thi. Thầy kiểm tra lại tên file JSON trên GitHub!</p>';
@@ -190,6 +191,7 @@
 
         function changeExam(jsonFile) {
             sessionStorage.removeItem('thpt_kha_current_exam');
+            modifiedQuestions.clear();
             resetExam();
             loadData(jsonFile);
         }
@@ -221,7 +223,6 @@
             document.getElementById('login-modal').classList.add('hidden');
         }
 
-        // Tự động tải file matkhau.json từ GitHub để kiểm tra mật khẩu động
         async function verifyAdminPassword() {
             const inputPass = document.getElementById('admin-pass-input').value;
             try {
@@ -231,11 +232,19 @@
                 if (inputPass === data.admin_pass) {
                     isAdminMode = true;
                     closeLoginModal();
+                    
+                    // Dừng đồng hồ đếm giờ khi vào chế độ quản trị
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                    document.getElementById('timer').textContent = "ĐÃ KHÓA";
+
                     document.getElementById('admin-login-btn').classList.add('hidden');
                     document.getElementById('export-json-btn').classList.remove('hidden');
                     document.getElementById('admin-logout-btn').classList.remove('hidden');
                     renderQuestions();
-                    alert("Đăng nhập quản trị thành công!");
+                    alert("Đăng nhập quản trị thành công! Thời gian làm bài đã được tạm dừng.");
                 } else {
                     alert("Mật khẩu không chính xác!");
                 }
@@ -251,6 +260,7 @@
             document.getElementById('export-json-btn').classList.add('hidden');
             document.getElementById('admin-logout-btn').classList.add('hidden');
             renderQuestions();
+            startTimer(); // Khởi động lại đồng hồ khi thoát
             alert("Đã đăng xuất khỏi chế độ quản trị.");
         }
 
@@ -265,14 +275,64 @@
             alert("Đã tải xuống file .json sạch sẽ! Thầy đưa file này lên GitHub là hoàn tất cập nhật.");
         }
 
+        function markAsModified(qId, index) {
+            modifiedQuestions.add(qId);
+            sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
+            
+            // Cập nhật giao diện nút trên bảng điều hướng ngay lập tức
+            const btn = document.getElementById(`nav-btn-${qId}`);
+            if (btn && !btn.innerHTML.includes('dot')) {
+                btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-amber-500 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 transition flex items-center justify-center shadow-sm relative";
+                btn.innerHTML = `${qId} <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-amber-500 rounded-full"></span>`;
+            }
+        }
+
         function updateQuestionData(qIndex, field, value) {
             questionsData[qIndex][field] = value;
-            sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
+            markAsModified(questionsData[qIndex].id, qIndex);
+            
+            if (field === 'image') {
+                const imgContainer = document.getElementById(`img-container-${questionsData[qIndex].id}`);
+                if (imgContainer) {
+                    imgContainer.innerHTML = value ? `<img src="${convertDriveUrl(value)}" class="question-image" alt="Hình minh họa">` : '';
+                }
+            }
         }
 
         function updateOptionData(qIndex, optIndex, value) {
             questionsData[qIndex].options[optIndex].text = value;
-            sessionStorage.setItem('thpt_kha_current_exam', JSON.stringify(questionsData));
+            markAsModified(questionsData[qIndex].id, qIndex);
+            
+            // Cập nhật hiển thị đáp án trực tiếp ngoài giao diện
+            const qId = questionsData[qIndex].id;
+            const optKey = questionsData[qIndex].options[optIndex].key;
+            const contentSpan = document.querySelector(`.opt-content-${qId}-${optKey}`);
+            if (contentSpan) {
+                contentSpan.innerHTML = formatOptionText(value);
+            }
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function convertDriveUrl(url) {
+            if (!url) return '';
+            let trimmed = url.trim();
+            let match = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || trimmed.match(/id=([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://lh3.googleusercontent.com/d/${match[1]}`;
+            }
+            return trimmed;
+        }
+
+        function formatOptionText(text) {
+            if (!text) return '';
+            let trimmed = text.trim();
+            if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+                if (trimmed.includes('drive.google.com') || trimmed.includes('googleusercontent.com') || trimmed.match(/\.(jpeg|jpg|gif|png)$/i)) {
+                    let imgUrl = convertDriveUrl(trimmed);
+                    return `<img src="${imgUrl}" class="question-image" alt="Hình minh họa đáp án">`;
+                }
+            }
+            return trimmed;
         }
 
         function renderQuestions() {
@@ -282,13 +342,16 @@
             questionsData.forEach((q, index) => {
                 let optionsHtml = '';
                 q.options.forEach(opt => {
+                    let displayedText = formatOptionText(opt.text);
                     optionsHtml += `
                         <label class="option-label-${q.id}-${opt.key} flex items-start space-x-3 p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer border border-transparent transition">
                             <input type="radio" name="q_${q.id}" value="${opt.key}" onchange="updateNavStatus(${q.id})" class="mt-1 text-indigo-600 h-4 w-4">
-                            <span class="text-slate-700 dark:text-slate-200 text-sm md:text-base flex-1"><b>${opt.key}.</b> ${opt.text}</span>
+                            <span class="text-slate-700 dark:text-slate-200 text-sm md:text-base flex-1"><b>${opt.key}.</b> <span class="opt-content-${q.id}-${opt.key}">${displayedText}</span></span>
                         </label>
                     `;
                 });
+
+                let imageHtml = q.image ? `<img src="${convertDriveUrl(q.image)}" class="question-image" alt="Hình minh họa">` : '';
 
                 let editBoxHtml = '';
                 if (isAdminMode) {
@@ -299,11 +362,15 @@
                                 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Nội dung câu hỏi:</label>
                                 <textarea rows="2" oninput="updateQuestionData(${index}, 'text', this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">${q.text}</textarea>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Link ảnh minh họa câu hỏi (Google Drive):</label>
+                                <input type="text" value="${q.image || ''}" oninput="updateQuestionData(${index}, 'image', this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100" placeholder="https://drive.google.com/file/d/...">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 ${q.options.map((opt, optIdx) => `
                                     <div>
-                                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300">Đáp án ${opt.key}:</label>
-                                        <input type="text" value="${opt.text}" oninput="updateOptionData(${index},${optIdx}, this.value)" class="w-full text-xs p-1.5 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+                                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300">Đáp án ${opt.key} (Nhập chữ hoặc Link ảnh Drive):</label>
+                                        <input type="text" value="${opt.text}" oninput="updateOptionData(${index},${optIdx}, this.value)" class="w-full text-xs p-2 border border-amber-200 dark:border-amber-700 rounded bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">
                                     </div>
                                 `).join('')}
                             </div>
@@ -326,6 +393,7 @@
                 card.className = "bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-5 md:p-6 transition transition-colors";
                 card.innerHTML = `
                     <div class="font-medium text-slate-900 dark:text-slate-100 text-base md:text-lg mb-3 leading-relaxed">${q.text}</div>
+                    <div id="img-container-${q.id}">${imageHtml}</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">${optionsHtml}</div>
                     ${editBoxHtml}
                     <div id="explanation-${q.id}" class="hidden mt-4 p-3 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/50 rounded-lg text-xs md:text-sm text-indigo-950 dark:text-indigo-200">
@@ -345,8 +413,15 @@
             questionsData.forEach((q) => {
                 const btn = document.createElement('button');
                 btn.id = `nav-btn-${q.id}`;
-                btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center";
-                btn.textContent = q.id;
+                
+                if (modifiedQuestions.has(q.id)) {
+                    btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-amber-500 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 transition flex items-center justify-center shadow-sm relative";
+                    btn.innerHTML = `${q.id} <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-amber-500 rounded-full"></span>`;
+                } else {
+                    btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center";
+                    btn.textContent = q.id;
+                }
+
                 btn.onclick = () => {
                     document.getElementById(`question-card-${q.id}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
                 };
@@ -355,8 +430,12 @@
         }
 
         function updateNavStatus(qId) {
+            if (modifiedQuestions.has(qId)) return;
             const btn = document.getElementById(`nav-btn-${qId}`);
-            if (btn) btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-indigo-500 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 transition flex items-center justify-center shadow-sm";
+            const selected = document.querySelector(`input[name="q_${qId}"]:checked`);
+            if (selected && btn) {
+                btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-indigo-500 bg-indigo-50 dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 transition flex items-center justify-center shadow-sm";
+            }
             
             let count = 0;
             questionsData.forEach(q => {
@@ -367,6 +446,8 @@
 
         function startTimer() {
             if (timerInterval) clearInterval(timerInterval);
+            if (isAdminMode) return; // Không đếm giờ nếu đang ở chế độ quản trị
+            
             timeLeft = 90 * 60;
             timerInterval = setInterval(() => {
                 const m = Math.floor(timeLeft / 60);
