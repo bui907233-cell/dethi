@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Ôn Tập Toán 10 - Thầy Lê Minh Kha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['[', ']']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .question-image { max-width: 100%; height: auto; max-height: 350px; object-fit: contain; margin: 10px auto; display: block; border-radius: 6px; border: 1px solid #e5e7eb; }
+        @media print { .no-print { display: none !important; } }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-200">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-900 dark:bg-slate-900 text-white shadow-md sticky top-0 z-50 no-print border-b border-indigo-800 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+            <div>
+                <h1 class="text-lg md:text-xl font-bold uppercase tracking-wider">TOÁN THẦY KHA</h1>
+                <p class="text-xs text-indigo-200 dark:text-slate-400">HỆ THỐNG TRẮC NGHIỆM ONLINE - MÔN TOÁN 10</p>
+            </div>
+            
+            <!-- Khu vực chọn đề động -->
+            <div class="flex items-center space-x-2">
+                <span class="text-xs font-semibold text-indigo-200">Chọn đề thi:</span>
+                <select id="select-de" onchange="changeExam(this.value)" class="bg-indigo-800 text-white text-xs px-3 py-1.5 rounded-lg border border-indigo-700 outline-none cursor-pointer">
+                    <!-- Thầy có thể thêm các option đề tiếp theo tại đây bằng link Raw JSON tương ứng -->
+                    <option value="de01.json">Đề Ôn Tập Giữa Kì I - Đề Số 1</option>
+                    <!-- Ví dụ đề 2: <option value="de02.json">Đề Ôn Tập Giữa Kì I - Đề Số 2</option> -->
+                </select>
+            </div>
+
+            <div class="flex items-center space-x-2 md:space-x-3">
+                <div class="bg-indigo-800 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-indigo-700 flex items-center space-x-2 shadow-inner">
+                    <svg class="w-5 h-5 text-amber-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span id="timer" class="font-mono font-bold text-base md:text-lg text-amber-300">90:00</span>
+                </div>
+                <button onclick="toggleDarkMode()" class="bg-indigo-800 hover:bg-indigo-700 dark:bg-slate-800 text-amber-300 p-2 rounded-lg text-xs transition border border-indigo-700" title="Chuyển đổi giao diện Sáng/Tối">
+                    <span id="dark-mode-icon">🌙</span>
+                </button>
+                <button onclick="resetExam()" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition shadow">
+                    🔄 Thi Lại
+                </button>
+                <button onclick="toggleNavDrawer()" class="bg-indigo-700 dark:bg-slate-800 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition shadow border border-indigo-600">
+                    📑 Bảng Câu Hỏi
+                </button>
+                <button onclick="submitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-1.5 rounded-lg text-xs transition shadow">
+                    📤 Nộp Bài
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        <main class="flex-1 max-w-4xl mx-auto w-full">
+            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6 mb-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold text-indigo-900 dark:text-indigo-400 mb-2">ĐỀ ÔN TẬP GIỮA KÌ I - TOÁN 10</h2>
+                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                    Thời gian làm bài: 90 phút. (Sưu tầm và Biên soạn: Lê Minh Kha - 0399653362).
+                </p>
+            </div>
+
+            <!-- Loading Box -->
+            <div id="loading-box" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-600 border-t-transparent"></div>
+                <p class="text-sm text-slate-500 mt-2">Đang tải dữ liệu đề thi...</p>
+            </div>
+
+            <div id="questions-container" class="space-y-6"></div>
+
+            <div class="mt-8 text-center no-print pb-16">
+                <button onclick="submitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg text-lg transition">
+                    Hoàn thành & Nộp Bài Ngay
+                </button>
+            </div>
+        </main>
+
+        <!-- Sidebar Điều Hướng -->
+        <aside class="w-full lg:w-80 shrink-0 no-print">
+            <div class="sticky top-20 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-slate-900 dark:text-slate-100 text-base">📌 Bảng Điều Hướng</h3>
+                    <span id="answered-counter" class="text-xs font-semibold px-2.5 py-1 bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 rounded-full">0 đã làm</span>
+                </div>
+                <div id="nav-grid" class="grid grid-cols-5 gap-2 max-h-[60vh] overflow-y-auto pr-1 custom-scrollbar"></div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal Kết Quả -->
+    <div id="result-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh] border border-slate-700 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full text-3xl mb-4 font-bold">🏆</div>
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Kết Quả Bài Làm</h3>
+            <div class="grid grid-cols-3 gap-4 my-6">
+                <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-700">
+                    <span class="block text-xs text-slate-400 uppercase font-semibold">Điểm Số</span>
+                    <span id="score-display" class="text-3xl font-black text-indigo-500">0.0</span><span class="text-sm text-slate-400">/10</span>
+                </div>
+                <div class="bg-emerald-950/40 p-4 rounded-xl border border-emerald-900">
+                    <span class="block text-xs text-emerald-400 uppercase font-semibold">Số Câu Đúng</span>
+                    <span id="correct-count" class="text-3xl font-black text-emerald-400">0</span>
+                </div>
+                <div class="bg-rose-950/40 p-4 rounded-xl border border-rose-900">
+                    <span class="block text-xs text-rose-400 uppercase font-semibold">Số Câu Sai/Trống</span>
+                    <span id="incorrect-count" class="text-3xl font-black text-rose-400">0</span>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-2.5 rounded-xl transition">Xem Lời Giải Chi Tiết</button>
+                <button onclick="resetExam()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl transition">Làm Lại Từ Đầu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Xử Lý -->
+    <script>
+        let questionsData = [];
+        let timerInterval = null;
+        let timeLeft = 90 * 60;
+
+        async function loadData(jsonFile) {
+            document.getElementById('loading-box').style.display = 'block';
+            document.getElementById('questions-container').innerHTML = '';
+            
+            try {
+                // Khi đưa lên GitHub, file json đặt cùng cấp sẽ tự động gọi được bằng tên file
+                const response = await fetch(jsonFile);
+                questionsData = await response.json();
+                document.getElementById('loading-box').style.display = 'none';
+                renderQuestions();
+                startTimer();
+            } catch (error) {
+                console.error('Lỗi tải dữ liệu:', error);
+                document.getElementById('loading-box').innerHTML = '<p class="text-rose-500">Không thể tải được file dữ liệu đề thi. Thầy kiểm tra lại tên file JSON trên GitHub!</p>';
+            }
+        }
+
+        function changeExam(jsonFile) {
+            resetExam();
+            loadData(jsonFile);
+        }
+
+        function initDarkMode() {
+            if (localStorage.getItem('thpt_ductrong_dark_mode') === 'true') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('dark-mode-icon').textContent = '☀️';
+            }
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('thpt_ductrong_dark_mode', isDark);
+            document.getElementById('dark-mode-icon').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            questionsData.forEach((q) => {
+                let optionsHtml = '';
+                q.options.forEach(opt => {
+                    optionsHtml += `
+                        <label class="option-label-${q.id}-${opt.key} flex items-start space-x-3 p-2.5 rounded-lg hover:bg-slate-800 cursor-pointer border border-transparent transition">
+                            <input type="radio" name="q_${q.id}" value="${opt.key}" onchange="updateNavStatus(${q.id})" class="mt-1 text-indigo-600 h-4 w-4">
+                            <span class="text-slate-200 text-sm md:text-base flex-1"><b>${opt.key}.</b> ${opt.text}</span>
+                        </label>
+                    `;
+                });
+
+                const card = document.createElement('div');
+                card.id = `question-card-${q.id}`;
+                card.className = "bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-5 md:p-6 transition";
+                card.innerHTML = `
+                    <div class="font-medium text-slate-900 dark:text-slate-100 text-base md:text-lg mb-3 leading-relaxed">${q.text}</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">${optionsHtml}</div>
+                    <div id="explanation-${q.id}" class="hidden mt-4 p-3 bg-indigo-950/40 border border-indigo-900/50 rounded-lg text-xs md:text-sm text-indigo-200">
+                        <span class="font-bold text-indigo-400">💡 Hướng dẫn giải:</span> ${q.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            renderNavGrid();
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function renderNavGrid() {
+            const navGrid = document.getElementById('nav-grid');
+            navGrid.innerHTML = '';
+            questionsData.forEach((q) => {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${q.id}`;
+                btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-slate-800 bg-slate-800 text-slate-300 hover:bg-slate-700 transition flex items-center justify-center";
+                btn.textContent = q.id;
+                btn.onclick = () => {
+                    document.getElementById(`question-card-${q.id}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                };
+                navGrid.appendChild(btn);
+            });
+        }
+
+        function updateNavStatus(qId) {
+            const btn = document.getElementById(`nav-btn-${qId}`);
+            if (btn) btn.className = "h-9 w-full rounded-lg text-xs font-bold border border-indigo-500 bg-indigo-950 text-indigo-300 transition flex items-center justify-center";
+            
+            let count = 0;
+            questionsData.forEach(q => {
+                if (document.querySelector(`input[name="q_${q.id}"]:checked`)) count++;
+            });
+            document.getElementById('answered-counter').textContent = `${count}/${questionsData.length} đã làm`;
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timeLeft = 90 * 60;
+            timerInterval = setInterval(() => {
+                const m = Math.floor(timeLeft / 60);
+                const s = timeLeft % 60;
+                document.getElementById('timer').textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                if (timeLeft <= 0) { clearInterval(timerInterval); submitExam(); }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function submitExam() {
+            let correct = 0, incorrect = 0;
+            questionsData.forEach(q => {
+                const sel = document.querySelector(`input[name="q_${q.id}"]:checked`);
+                document.getElementById(`explanation-${q.id}`).classList.remove('hidden');
+                
+                if (sel && sel.value === q.correct) correct++;
+                else incorrect++;
+            });
+
+            const score = (correct * (10 / questionsData.length)).toFixed(2);
+            document.getElementById('score-display').textContent = score;
+            document.getElementById('correct-count').textContent = `${correct}/${questionsData.length}`;
+            document.getElementById('incorrect-count').textContent = incorrect;
+            document.getElementById('result-modal').classList.remove('hidden');
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function closeModal() { document.getElementById('result-modal').classList.add('hidden'); }
+        function resetExam() {
+            document.getElementById('result-modal').classList.add('hidden');
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            loadData(document.getElementById('select-de').value);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            loadData('de01.json'); // Mặc định khi mở web sẽ tải file de01.json
+        });
+    </script>
+</body>
+</html>
