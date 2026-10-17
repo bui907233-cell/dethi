@@ -193,15 +193,15 @@
     },
     {
         "id": 17,
-        "text": "Phần III. Câu 17 (Bài 3). Cho hệ bất phương trình $\\left\\{\\begin{matrix} x + y \\ge 5 \\\\ x - 2y \\le 2 \\\\ y \\le 3 \\end{matrix}\\right.$. Tìm giá trị nhỏ nhất của tham số $m$ để bất phương trình $2x - 5y + m \\ge 0$ nghiệm đúng với mọi cặp số $(x; y)$ thỏa mãn hệ.",
+        "text": "Phần III. Câu 17 (Bài 3). Cho hệ bất phương trình $\\left\\{\\begin{matrix} x + y \\ge 5 \\\\ x - 2y \\le 2 \\\\ y \\le 3 \\end{matrix}\\right.$. Tìm giá trị nhỏ nhất của tham số $m$ để bất phương trình $2x - 5y + m \\ge 0$ nghiệm đúng với mọi cặp số $(x; y)$ thoả mãn hệ.",
         "options": [
             { "key": "A", "text": "7" },
             { "key": "B", "text": "5" },
             { "key": "C", "text": "9" },
             { "key": "D", "text": "11" }
         ],
-        "correct": "A",
-        "explanation": "Tìm miền nghiệm của hệ, xác định điểm làm biểu thức đạt giá trị nhỏ nhất để suy ra $m \\ge 7$."
+        "correct": "D",
+        "explanation": "Miền nghiệm của hệ có các đỉnh là $(4;1)$, $(2;3)$ và $(8;3)$. Biểu thức $f(x,y) = 2x - 5y$ đạt giá trị nhỏ nhất bằng $-11$ tại điểm $(2;3)$. Do đó để $2x - 5y + m \\ge 0$ nghiệm đúng với mọi $(x;y)$ thì $m \\ge -(-11) = 11$. Vậy giá trị nhỏ nhất của $m$ là 11 (Đáp án D)."
     },
     {
         "id": 18,
@@ -212,8 +212,8 @@
             { "key": "C", "text": "9" },
             { "key": "D", "text": "4" }
         ],
-        "correct": "A",
-        "explanation": "Ta có $\\cos x = \\sqrt{1 - \\sin^2 x} = \\frac{4}{5}$. Suy ra $a = 4, b = 5 \\implies a + b = 9$ (hoặc tùy theo dạng phân số tối giản cấu trúc đề)."
+        "correct": "C",
+        "explanation": "Ta có $\\cos x = \\sqrt{1 - \\sin^2 x} = \\sqrt{1 - \\left(\\frac{3}{5}\\right)^2} = \\frac{4}{5}$. Vì $\\frac{4}{5}$ là phân số tối giản nên $a = 4, b = 5$. Suy ra $a + b = 4 + 5 = 9$. Do đó đáp án đúng là C."
     },
     {
         "id": 19,
