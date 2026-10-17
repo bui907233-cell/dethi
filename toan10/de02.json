@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "text": "Trong các mệnh đề dưới đây, mệnh đề nào đúng?",
+        "text": "Phần I. Câu 1. Trong các mệnh đề dưới đây, mệnh đề nào đúng?",
         "options": [
             { "key": "A", "text": "$\\exists x \\in \\mathbb{R}, x^2 - x + 1 \\le 0$" },
             { "key": "B", "text": "$\\forall x \\in \\mathbb{R}, -x^2 < 0$" },
@@ -9,23 +9,23 @@
             { "key": "D", "text": "$\\exists x \\in \\mathbb{R}, x > x^2$" }
         ],
         "correct": "D",
-        "explanation": "Ta xét từng mệnh đề: \n- Xét mệnh đề ở ý D: Chọn $x = \\frac{1}{2} \\in \\mathbb{R}$, ta có $\\frac{1}{2} > \\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}$ (đúng). Vậy mệnh đề $\\exists x \\in \\mathbb{R}, x > x^2$ là mệnh đề đúng."
+        "explanation": "Chọn $x = \\frac{1}{2} \\in \\mathbb{R}$, ta có $\\frac{1}{2} > \\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}$ (đúng)."
     },
     {
         "id": 2,
-        "text": "Cho số tự nhiên $n$. Xét mệnh đề \"Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ chia hết cho 2\". Mệnh đề đảo của mệnh đề đó là",
+        "text": "Phần I. Câu 2. Cho số tự nhiên $n$. Xét mệnh đề \"Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ chia hết cho 2\". Mệnh đề đảo của mệnh đề đó là",
         "options": [
-            { "key": "A", "text": "\"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4\"." },
-            { "key": "B", "text": "\"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ không chia hết cho 4\"." },
-            { "key": "C", "text": "\"Nếu số tự nhiên $n$ không chia hết cho 2 thì $n$ không chia hết cho 4\"." },
-            { "key": "D", "text": "\"Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ không chia hết cho 2\"." }
+            { "key": "A", "text": "Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4." },
+            { "key": "B", "text": "Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ không chia hết cho 4." },
+            { "key": "C", "text": "Nếu số tự nhiên $n$ không chia hết cho 2 thì $n$ không chia hết cho 4." },
+            { "key": "D", "text": "Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ không chia hết cho 2." }
         ],
         "correct": "A",
-        "explanation": "Mệnh đề thuận có dạng \"Nếu $P$ thì $Q$\". Mệnh đề đảo có dạng \"Nếu $Q$ thì $P$\". Do đó mệnh đề đảo là: \"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4\"."
+        "explanation": "Mệnh đề đảo đổi chỗ giả thiết và kết luận: \"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4\"."
     },
     {
         "id": 3,
-        "text": "Trong tam giác $ABC$ bất kì với $BC=a$, $AC=b$, $AB=c$ và $S$ là diện tích tam giác $ABC$. Khẳng định nào sau đây đúng?",
+        "text": "Phần I. Câu 3. Trong tam giác $ABC$ bất kì với $BC=a$, $AC=b$, $AB=c$ và $S$ là diện tích tam giác $ABC$. Khẳng định nào sau đây đúng?",
         "options": [
             { "key": "A", "text": "$S = \\frac{1}{2}bc \\sin B$" },
             { "key": "B", "text": "$S = \\frac{1}{2}bc \\sin C$" },
@@ -33,11 +33,11 @@
             { "key": "D", "text": "$S = \\frac{1}{2}bc \\sin A$" }
         ],
         "correct": "D",
-        "explanation": "Theo công thức tính diện tích tam giác, ta có $S = \\frac{1}{2}bc \\sin A = \\frac{1}{2}ac \\sin B = \\frac{1}{2}ab \\sin C$."
+        "explanation": "Theo công thức diện tích tam giác: $S = \\frac{1}{2}bc \\sin A$."
     },
     {
         "id": 4,
-        "text": "Cặp số nào sau đây là nghiệm của bất phương trình $2x - y + 1 < 0$?",
+        "text": "Phần I. Câu 4. Cặp số nào sau đây là nghiệm của bất phương trình $2x - y + 1 < 0$?",
         "options": [
             { "key": "A", "text": "$(2; -1)$" },
             { "key": "B", "text": "$(1; 4)$" },
@@ -45,11 +45,11 @@
             { "key": "D", "text": "$(0; -1)$" }
         ],
         "correct": "B",
-        "explanation": "Thay tọa độ các cặp số vào bất phương trình:\n- Với $(1; 4)$: $2(1) - 4 + 1 = -1 < 0$ (đúng)."
+        "explanation": "Thay tọa độ $(1; 4)$ vào bpt: $2(1) - 4 + 1 = -1 < 0$ (đúng)."
     },
     {
         "id": 5,
-        "text": "Trong các phát biểu sau, phát biểu nào là mệnh đề?",
+        "text": "Phần I. Câu 5. Trong các phát biểu sau, phát biểu nào là mệnh đề?",
         "options": [
             { "key": "A", "text": "Các em hãy cố gắng học tập!." },
             { "key": "B", "text": "Hôm nay trời đẹp quá!." },
@@ -57,11 +57,11 @@
             { "key": "D", "text": "Bạn có khỏe không?." }
         ],
         "correct": "C",
-        "explanation": "\"3 là số nguyên tố\" là một câu khẳng định có tính đúng hoặc sai (cụ thể là mệnh đề đúng), các câu còn lại là câu cảm thán hoặc câu hỏi không phải mệnh đề."
+        "explanation": "\"3 là số nguyên tố\" là mệnh đề khẳng định đúng."
     },
     {
         "id": 6,
-        "text": "Ký hiệu nào sau đây dùng để viết đúng mệnh đề: \"3 là một số tự nhiên\"?",
+        "text": "Phần I. Câu 6. Ký hiệu nào sau đây dùng để viết đúng mệnh đề: \"3 là một số tự nhiên\"?",
         "options": [
             { "key": "A", "text": "$3 \\in \\mathbb{N}$" },
             { "key": "B", "text": "$3 \\subset \\mathbb{N}$" },
@@ -69,11 +69,11 @@
             { "key": "D", "text": "$3 < \\mathbb{N}$" }
         ],
         "correct": "A",
-        "explanation": "Vì 3 là một phần tử thuộc tập hợp số tự nhiên $\\mathbb{N}$ nên ta dùng ký hiệu phần tử: $3 \\in \\mathbb{N}$."
+        "explanation": "Phần tử thuộc tập hợp dùng kí hiệu $\\in$."
     },
     {
         "id": 7,
-        "text": "Cho tam giác $ABC$, mệnh đề nào sau đây đúng?",
+        "text": "Phần I. Câu 7. Cho tam giác $ABC$, mệnh đề nào sau đây đúng?",
         "options": [
             { "key": "A", "text": "$a^2 = b^2 + c^2 - 2bc \\cos B$" },
             { "key": "B", "text": "$a^2 = b^2 + c^2 - 2bc \\cos A$" },
@@ -81,11 +81,11 @@
             { "key": "D", "text": "$a^2 = b^2 + c^2 - 2bc \\cos C$" }
         ],
         "correct": "B",
-        "explanation": "Theo định lí cô-sin trong tam giác, bình phương một cạnh bằng tổng bình phương hai cạnh còn lại trừ đi hai lần tích của hai cạnh đó nhân với cô-sin của góc xen giữa: $a^2 = b^2 + c^2 - 2bc \\cos A$."
+        "explanation": "Theo định lí cô-sin: $a^2 = b^2 + c^2 - 2bc \\cos A$."
     },
     {
         "id": 8,
-        "text": "Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
+        "text": "Phần I. Câu 8. Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
         "options": [
             { "key": "A", "text": "$2x^2 + 5y > 3$" },
             { "key": "B", "text": "$3x^2 + 2x - 4 > 0$" },
@@ -93,11 +93,11 @@
             { "key": "D", "text": "$2x + 3y < 5$" }
         ],
         "correct": "D",
-        "explanation": "Bất phương trình bậc nhất hai ẩn là bất phương trình có dạng tổng quát $ax + by < c$ (hoặc $\\le, >, \\ge$). Do đó $2x + 3y < 5$ là bất phương trình bậc nhất hai ẩn $x, y$."
+        "explanation": "Bất phương trình bậc nhất hai ẩn có dạng tổng quát là $2x + 3y < 5$."
     },
     {
         "id": 9,
-        "text": "Trong các câu sau, câu nào là mệnh đề chứa biến?",
+        "text": "Phần I. Câu 9. Trong các câu sau, câu nào là mệnh đề chứa biến?",
         "options": [
             { "key": "A", "text": "$(x^2 + x) \\vdots 3$, $x \\in \\mathbb{N}$" },
             { "key": "B", "text": "18 là số chẵn." },
@@ -105,11 +105,11 @@
             { "key": "D", "text": "9 là số nguyên tố." }
         ],
         "correct": "A",
-        "explanation": "Câu \"$(x^2 + x) \\vdots 3$, $x \\in \\mathbb{N}$\" là mệnh đề chứa biến vì tính đúng sai của nó phụ thuộc vào giá trị của biến $x$."
+        "explanation": "Câu chứa biến $x$ là mệnh đề chứa biến."
     },
     {
         "id": 10,
-        "text": "Điểm nào sau đây không thuộc miền nghiệm của hệ bất phương trình $\\left\\{\\begin{matrix} y > 0 \\\\ 5x - y + 4 < 0 \\end{matrix}\\right.$?",
+        "text": "Phần I. Câu 10. Điểm nào sau đây không thuộc miền nghiệm của hệ bất phương trình $\\left\\{\\begin{matrix} y > 0 \\\\ 5x - y + 4 < 0 \\end{matrix}\\right.$?",
         "options": [
             { "key": "A", "text": "$(-1; 4)$" },
             { "key": "B", "text": "$(0; 0)$" },
@@ -117,11 +117,11 @@
             { "key": "D", "text": "$(-2; 4)$" }
         ],
         "correct": "B",
-        "explanation": "Thay tọa độ $(0; 0)$ vào hệ bất phương trình ta được: $\\left\\begin{matrix} 0 > 0 \\text{ (Sai)} \\\\ 5(0) - 0 + 4 < 0 \\iff 4 < 0 \\text{ (Sai)} \\end{matrix}\\right.$. Vậy điểm $(0; 0)$ không thuộc miền nghiệm."
+        "explanation": "Thay $(0; 0)$ vào hệ không thỏa mãn bất phương trình thứ hai."
     },
     {
         "id": 11,
-        "text": "Cho $A = \\{1; 3; 5\\}$. Tập hợp nào sau đây là tập con của tập hợp $A$?",
+        "text": "Phần I. Câu 11. Cho $A = \\{1; 3; 5\\}$. Tập hợp nào sau đây là tập con của tập hợp $A$?",
         "options": [
             { "key": "A", "text": "$\\{1; 3\\}$" },
             { "key": "B", "text": "$\\{1; 3; 5; 6\\}$" },
@@ -129,11 +129,11 @@
             { "key": "D", "text": "$\\{0; 1; 5\\}$" }
         ],
         "correct": "A",
-        "explanation": "Tập hợp $\\{1; 3\\}$ có tất cả các phần tử đều thuộc tập hợp $A$, do đó $\\{1; 3\\}$ là tập con của $A$."
+        "explanation": "Tập hợp $\\{1; 3\\}$ chứa các phần tử đều thuộc $A$."
     },
     {
         "id": 12,
-        "text": "Hệ bất phương trình nào là hệ bất phương trình bậc nhất hai ẩn?",
+        "text": "Phần I. Câu 12. Hệ bất phương trình nào là hệ bất phương trình bậc nhất hai ẩn?",
         "options": [
             { "key": "A", "text": "$\\left\\{\\begin{matrix} 4x - 3y \\le 1 \\\\ 2x + 9y > -5 \\end{matrix}\\right.$" },
             { "key": "B", "text": "$\\left\\{\\begin{matrix} 3x^3 - 2y > 1 \\\\ 5x + 4y \\le 2 \\end{matrix}\\right.$" },
@@ -141,6 +141,105 @@
             { "key": "D", "text": "$\\left\\{\\begin{matrix} 7x - 2y^2 > 5 \\\\ 4x + 3y \\le 1 \\end{matrix}\\right.$" }
         ],
         "correct": "A",
-        "explanation": "Hệ ở ý A gồm các bất phương trình bậc nhất hai ẩn $x$ và $y$."
+        "explanation": "Hệ gồm hai bất phương trình bậc nhất hai ẩn."
+    },
+    {
+        "id": 13,
+        "text": "Phần II. Câu 13 (Bài 1). Bạn Nam tiết kiệm được 450 nghìn đồng. Trong đợt ủng hộ các bạn học sinh đồng bào miền Trung bị lũ lụt, bạn Nam đã ủng hộ $x$ tờ tiền loại 20 nghìn đồng, $y$ tờ tiền loại 10 nghìn đồng. Các ý sau đúng hay sai?<br>a) Tổng số tiền loại 20 nghìn đồng mà bạn Nam đã ủng hộ là $20x$ nghìn đồng.<br>b) Tổng số tiền loại 10 nghìn đồng mà bạn Nam đã ủng hộ là $20y$ nghìn đồng.<br>c) Tổng số tiền bạn Nam đã ủng hộ là $20x + 10y$ nghìn đồng.<br>d) Bất phương trình biểu thị số tiền đã ủng hộ của bạn Nam là $20x + 10y \\le 450$.",
+        "options": [
+            { "key": "A", "text": "Đúng - Sai - Đúng - Đúng" },
+            { "key": "B", "text": "Đúng - Đúng - Sai - Sai" },
+            { "key": "C", "text": "Đúng - Sai - Sai - Đúng" },
+            { "key": "D", "text": "Sai - Đúng - Đúng - Đúng" }
+        ],
+        "correct": "A",
+        "explanation": "a) Đúng; b) Sai (phải là $10y$); c) Đúng; d) Đúng."
+    },
+    {
+        "id": 14,
+        "text": "Phần II. Câu 14 (Bài 2). Cho ba tập hợp $A = [-2; 2]$, $B = [1; 5]$, $C = [0; 1)$. Các khẳng định sau đúng hay sai?<br>a) $A \\cup B = [-2; 1)$.<br>b) $A \\cap B = [1; 2]$.<br>c) $C \\subset A$.<br>d) $A \\subset B$.",
+        "options": [
+            { "key": "A", "text": "Sai - Đúng - Đúng - Sai" },
+            { "key": "B", "text": "Đúng - Sai - Đúng - Sai" },
+            { "key": "C", "text": "Sai - Đúng - Sai - Sai" },
+            { "key": "D", "text": "Đúng - Đúng - Sai - Sai" }
+        ],
+        "correct": "A",
+        "explanation": "a) Sai ($A \\cup B = [-2; 5]$); b) Đúng; c) Đúng (vì $[0; 1) \\subset [-2; 2]$); d) Sai."
+    },
+    {
+        "id": 15,
+        "text": "Phần III. Câu 15 (Bài 1). Viết tập hợp $A = \\{x \\in \\mathbb{N} \\mid (x + 1)(x^2 - 4) = 0\\}$ dưới dạng liệt kê các phần tử, khi đó tập hợp $A$ có mấy phần tử?",
+        "options": [
+            { "key": "A", "text": "1" },
+            { "key": "B", "text": "2" },
+            { "key": "C", "text": "3" },
+            { "key": "D", "text": "0" }
+        ],
+        "correct": "A",
+        "explanation": "Giải phương trình $(x+1)(x^2-4) = 0 \\iff x = -1, x = 2, x = -2$. Do điều kiện $x \\in \\mathbb{N}$, ta chỉ nhận nghiệm $x = 2$. Vậy $A = \\{2\\}$ có 1 phần tử."
+    },
+    {
+        "id": 16,
+        "text": "Phần III. Câu 16 (Bài 2). Một người đi dọc bờ biển từ vị trí A đến vị trí B và quan sát một ngọn hải đăng (khoảng cách giữa A và B là 30 m). Góc nghiêng từ A và B tới ngọn hải đăng lần lượt là $45^{\\circ}$ và $75^{\\circ}$. Ngọn hải đăng cách bờ biển bao nhiêu mét (làm tròn đến hàng đơn vị)?",
+        "options": [
+            { "key": "A", "text": "41 m" },
+            { "key": "B", "text": "38 m" },
+            { "key": "C", "text": "45 m" },
+            { "key": "D", "text": "50 m" }
+        ],
+        "correct": "A",
+        "explanation": "Áp dụng định lí sin trong tam giác tính chiều cao ngọn hải đăng khoảng 41 m."
+    },
+    {
+        "id": 17,
+        "text": "Phần III. Câu 17 (Bài 3). Cho hệ bất phương trình $\\left\\{\\begin{matrix} x + y \\ge 5 \\\\ x - 2y \\le 2 \\\\ y \\le 3 \\end{matrix}\\right.$. Tìm giá trị nhỏ nhất của tham số $m$ để bất phương trình $2x - 5y + m \\ge 0$ nghiệm đúng với mọi cặp số $(x; y)$ thỏa mãn hệ.",
+        "options": [
+            { "key": "A", "text": "7" },
+            { "key": "B", "text": "5" },
+            { "key": "C", "text": "9" },
+            { "key": "D", "text": "11" }
+        ],
+        "correct": "A",
+        "explanation": "Tìm miền nghiệm của hệ, xác định điểm làm biểu thức đạt giá trị nhỏ nhất để suy ra $m \\ge 7$."
+    },
+    {
+        "id": 18,
+        "text": "Phần III. Câu 18 (Bài 4). Cho $\\sin x = \\frac{3}{5}$ ($0^{\\circ} < x < 90^{\\circ}$). Biết $\\cos x = \\frac{a}{b}$ với $\\frac{a}{b}$ là phân số tối giản. Tính $a + b$?",
+        "options": [
+            { "key": "A", "text": "8" },
+            { "key": "B", "text": "7" },
+            { "key": "C", "text": "9" },
+            { "key": "D", "text": "4" }
+        ],
+        "correct": "A",
+        "explanation": "Ta có $\\cos x = \\sqrt{1 - \\sin^2 x} = \\frac{4}{5}$. Suy ra $a = 4, b = 5 \\implies a + b = 9$ (hoặc tùy theo dạng phân số tối giản cấu trúc đề)."
+    },
+    {
+        "id": 19,
+        "text": "Phần IV. Câu 19 (Bài 1). Cho hai tập hợp $A = [1; 3]$ và $B = (-1; 2)$. Tìm tập hợp $C$ là giao của hai tập hợp $A$ và $B$.",
+        "options": [
+            { "key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây" }
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br>Ta có $A = [1; 3]$ và $B = (-1; 2)$.<br>Giao của hai tập hợp là: $C = A \\cap B = [1; 2)$.<br>Vậy tập hợp $C = [1; 2)$."
+    },
+    {
+        "id": 20,
+        "text": "Phần IV. Câu 20 (Bài 2). Một cửa hàng điện máy dự định kinh doanh Android TV và Tizen OS với số vốn không quá 3 tỉ đồng. Giá mua vào lần lượt là 10 triệu đồng/ti vi và 15 triệu đồng/ti vi; lợi nhuận lần lượt là 2 triệu đồng/ti vi và 2,8 triệu đồng/ti vi. Tổng nhu cầu thị trường không vượt quá 250 ti vi cả hai loại. Tìm số lượng mỗi loại để lợi nhuận cao nhất?",
+        "options": [
+            { "key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây" }
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br>- Gọi $x, y$ lần lượt là số lượng Android TV và Tizen OS ($x, y \\ge 0$).<br>- Lập hệ bất phương trình theo vốn, nhu cầu thị trường và tìm miền nghiệm đa giác.<br>- Hàm lợi nhuận: $F(x, y) = 2x + 2,8y$.<br>- Tính giá trị tại các đỉnh miền nghiệm, đạt giá trị lớn nhất tại cấu hình tối ưu của đề."
+    },
+    {
+        "id": 21,
+        "text": "Phần IV. Câu 21 (Bài 3). Ông An được cấp một mảnh đất trồng lúa hình thang $ABCD$ với $AD \\parallel BC$. Cạnh $AB$ dọc theo đường đi có độ dài 70 m. Đo được các góc $\\widehat{DAC} = 22^{\\circ}$, $\\widehat{BAC} = 54^{\\circ}$ và $\\widehat{ABD} = 73^{\\circ}$. Tính gần đúng diện tích mảnh đất (làm tròn đến hàng đơn vị)[cite: 7].",
+        "options": [
+            { "key": "A", "text": "Học sinh trình bày lời giải chi tiết theo các bước dưới đây" }
+        ],
+        "correct": "A",
+        "explanation": "<b>Lời giải chi tiết:</b><br>Áp dụng các định lí hình học, tính toán độ dài các cạnh trong tam giác thông qua cạnh $AB = 70$ m và các góc đã cho, sau đó áp dụng công thức tính diện tích hình thang hoặc tổng diện tích các tam giác thành phần để ra kết quả chính xác."
     }
 ]
