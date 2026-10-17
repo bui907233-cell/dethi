@@ -1,0 +1,146 @@
+[
+    {
+        "id": 1,
+        "text": "Trong các mệnh đề dưới đây, mệnh đề nào đúng?",
+        "options": [
+            { "key": "A", "text": "$\\exists x \\in \\mathbb{R}, x^2 - x + 1 \\le 0$" },
+            { "key": "B", "text": "$\\forall x \\in \\mathbb{R}, -x^2 < 0$" },
+            { "key": "C", "text": "$\\forall x \\in \\mathbb{N}, x \\vdots 3$" },
+            { "key": "D", "text": "$\\exists x \\in \\mathbb{R}, x > x^2$" }
+        ],
+        "correct": "D",
+        "explanation": "Ta xét từng mệnh đề: \n- Xét mệnh đề ở ý D: Chọn $x = \\frac{1}{2} \\in \\mathbb{R}$, ta có $\\frac{1}{2} > \\left(\\frac{1}{2}\\right)^2 = \\frac{1}{4}$ (đúng). Vậy mệnh đề $\\exists x \\in \\mathbb{R}, x > x^2$ là mệnh đề đúng."
+    },
+    {
+        "id": 2,
+        "text": "Cho số tự nhiên $n$. Xét mệnh đề \"Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ chia hết cho 2\". Mệnh đề đảo của mệnh đề đó là",
+        "options": [
+            { "key": "A", "text": "\"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4\"." },
+            { "key": "B", "text": "\"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ không chia hết cho 4\"." },
+            { "key": "C", "text": "\"Nếu số tự nhiên $n$ không chia hết cho 2 thì $n$ không chia hết cho 4\"." },
+            { "key": "D", "text": "\"Nếu số tự nhiên $n$ chia hết cho 4 thì $n$ không chia hết cho 2\"." }
+        ],
+        "correct": "A",
+        "explanation": "Mệnh đề thuận có dạng \"Nếu $P$ thì $Q$\". Mệnh đề đảo có dạng \"Nếu $Q$ thì $P$\". Do đó mệnh đề đảo là: \"Nếu số tự nhiên $n$ chia hết cho 2 thì $n$ chia hết cho 4\"."
+    },
+    {
+        "id": 3,
+        "text": "Trong tam giác $ABC$ bất kì với $BC=a$, $AC=b$, $AB=c$ và $S$ là diện tích tam giác $ABC$. Khẳng định nào sau đây đúng?",
+        "options": [
+            { "key": "A", "text": "$S = \\frac{1}{2}bc \\sin B$" },
+            { "key": "B", "text": "$S = \\frac{1}{2}bc \\sin C$" },
+            { "key": "C", "text": "$S = \\frac{1}{2}ac \\sin A$" },
+            { "key": "D", "text": "$S = \\frac{1}{2}bc \\sin A$" }
+        ],
+        "correct": "D",
+        "explanation": "Theo công thức tính diện tích tam giác, ta có $S = \\frac{1}{2}bc \\sin A = \\frac{1}{2}ac \\sin B = \\frac{1}{2}ab \\sin C$."
+    },
+    {
+        "id": 4,
+        "text": "Cặp số nào sau đây là nghiệm của bất phương trình $2x - y + 1 < 0$?",
+        "options": [
+            { "key": "A", "text": "$(2; -1)$" },
+            { "key": "B", "text": "$(1; 4)$" },
+            { "key": "C", "text": "$(3; 5)$" },
+            { "key": "D", "text": "$(0; -1)$" }
+        ],
+        "correct": "B",
+        "explanation": "Thay tọa độ các cặp số vào bất phương trình:\n- Với $(1; 4)$: $2(1) - 4 + 1 = -1 < 0$ (đúng)."
+    },
+    {
+        "id": 5,
+        "text": "Trong các phát biểu sau, phát biểu nào là mệnh đề?",
+        "options": [
+            { "key": "A", "text": "Các em hãy cố gắng học tập!." },
+            { "key": "B", "text": "Hôm nay trời đẹp quá!." },
+            { "key": "C", "text": "3 là số nguyên tố." },
+            { "key": "D", "text": "Bạn có khỏe không?." }
+        ],
+        "correct": "C",
+        "explanation": "\"3 là số nguyên tố\" là một câu khẳng định có tính đúng hoặc sai (cụ thể là mệnh đề đúng), các câu còn lại là câu cảm thán hoặc câu hỏi không phải mệnh đề."
+    },
+    {
+        "id": 6,
+        "text": "Ký hiệu nào sau đây dùng để viết đúng mệnh đề: \"3 là một số tự nhiên\"?",
+        "options": [
+            { "key": "A", "text": "$3 \\in \\mathbb{N}$" },
+            { "key": "B", "text": "$3 \\subset \\mathbb{N}$" },
+            { "key": "C", "text": "$3 \\le \\mathbb{N}$" },
+            { "key": "D", "text": "$3 < \\mathbb{N}$" }
+        ],
+        "correct": "A",
+        "explanation": "Vì 3 là một phần tử thuộc tập hợp số tự nhiên $\\mathbb{N}$ nên ta dùng ký hiệu phần tử: $3 \\in \\mathbb{N}$."
+    },
+    {
+        "id": 7,
+        "text": "Cho tam giác $ABC$, mệnh đề nào sau đây đúng?",
+        "options": [
+            { "key": "A", "text": "$a^2 = b^2 + c^2 - 2bc \\cos B$" },
+            { "key": "B", "text": "$a^2 = b^2 + c^2 - 2bc \\cos A$" },
+            { "key": "C", "text": "$a^2 = b^2 + c^2 + 2bc \\cos A$" },
+            { "key": "D", "text": "$a^2 = b^2 + c^2 - 2bc \\cos C$" }
+        ],
+        "correct": "B",
+        "explanation": "Theo định lí cô-sin trong tam giác, bình phương một cạnh bằng tổng bình phương hai cạnh còn lại trừ đi hai lần tích của hai cạnh đó nhân với cô-sin của góc xen giữa: $a^2 = b^2 + c^2 - 2bc \\cos A$."
+    },
+    {
+        "id": 8,
+        "text": "Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
+        "options": [
+            { "key": "A", "text": "$2x^2 + 5y > 3$" },
+            { "key": "B", "text": "$3x^2 + 2x - 4 > 0$" },
+            { "key": "C", "text": "$2x - 5y + 3z \\le 0$" },
+            { "key": "D", "text": "$2x + 3y < 5$" }
+        ],
+        "correct": "D",
+        "explanation": "Bất phương trình bậc nhất hai ẩn là bất phương trình có dạng tổng quát $ax + by < c$ (hoặc $\\le, >, \\ge$). Do đó $2x + 3y < 5$ là bất phương trình bậc nhất hai ẩn $x, y$."
+    },
+    {
+        "id": 9,
+        "text": "Trong các câu sau, câu nào là mệnh đề chứa biến?",
+        "options": [
+            { "key": "A", "text": "$(x^2 + x) \\vdots 3$, $x \\in \\mathbb{N}$" },
+            { "key": "B", "text": "18 là số chẵn." },
+            { "key": "C", "text": "Hình chữ nhật có hai đường chéo bằng nhau." },
+            { "key": "D", "text": "9 là số nguyên tố." }
+        ],
+        "correct": "A",
+        "explanation": "Câu \"$(x^2 + x) \\vdots 3$, $x \\in \\mathbb{N}$\" là mệnh đề chứa biến vì tính đúng sai của nó phụ thuộc vào giá trị của biến $x$."
+    },
+    {
+        "id": 10,
+        "text": "Điểm nào sau đây không thuộc miền nghiệm của hệ bất phương trình $\\left\\{\\begin{matrix} y > 0 \\\\ 5x - y + 4 < 0 \\end{matrix}\\right.$?",
+        "options": [
+            { "key": "A", "text": "$(-1; 4)$" },
+            { "key": "B", "text": "$(0; 0)$" },
+            { "key": "C", "text": "$(-3; 4)$" },
+            { "key": "D", "text": "$(-2; 4)$" }
+        ],
+        "correct": "B",
+        "explanation": "Thay tọa độ $(0; 0)$ vào hệ bất phương trình ta được: $\\left\\begin{matrix} 0 > 0 \\text{ (Sai)} \\\\ 5(0) - 0 + 4 < 0 \\iff 4 < 0 \\text{ (Sai)} \\end{matrix}\\right.$. Vậy điểm $(0; 0)$ không thuộc miền nghiệm."
+    },
+    {
+        "id": 11,
+        "text": "Cho $A = \\{1; 3; 5\\}$. Tập hợp nào sau đây là tập con của tập hợp $A$?",
+        "options": [
+            { "key": "A", "text": "$\\{1; 3\\}$" },
+            { "key": "B", "text": "$\\{1; 3; 5; 6\\}$" },
+            { "key": "C", "text": "$\\{0\\}$" },
+            { "key": "D", "text": "$\\{0; 1; 5\\}$" }
+        ],
+        "correct": "A",
+        "explanation": "Tập hợp $\\{1; 3\\}$ có tất cả các phần tử đều thuộc tập hợp $A$, do đó $\\{1; 3\\}$ là tập con của $A$."
+    },
+    {
+        "id": 12,
+        "text": "Hệ bất phương trình nào là hệ bất phương trình bậc nhất hai ẩn?",
+        "options": [
+            { "key": "A", "text": "$\\left\\{\\begin{matrix} 4x - 3y \\le 1 \\\\ 2x + 9y > -5 \\end{matrix}\\right.$" },
+            { "key": "B", "text": "$\\left\\{\\begin{matrix} 3x^3 - 2y > 1 \\\\ 5x + 4y \\le 2 \\end{matrix}\\right.$" },
+            { "key": "C", "text": "$\\left\\{\\begin{matrix} -6x + 2y \\ge 5 \\\\ 6xy - 5y \\le 1 \\end{matrix}\\right.$" },
+            { "key": "D", "text": "$\\left\\{\\begin{matrix} 7x - 2y^2 > 5 \\\\ 4x + 3y \\le 1 \\end{matrix}\\right.$" }
+        ],
+        "correct": "A",
+        "explanation": "Hệ ở ý A gồm các bất phương trình bậc nhất hai ẩn $x$ và $y$."
+    }
+]
