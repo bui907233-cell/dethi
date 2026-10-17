@@ -9,8 +9,6 @@
     <script>
         tailwind.config = { darkMode: 'class' }
     </script>
-    <!-- Google Identity Services (Google Sign-In) -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- MathJax 3 CDN -->
     <script>
         window.MathJax = {
@@ -54,23 +52,18 @@
                     <span id="dark-mode-icon">🌙</span>
                 </button>
                 
-                <!-- Khu vực nút Quản Trị / Đăng Nhập Gmail -->
-                <div id="admin-auth-container">
-                    <button onclick="triggerGoogleLogin()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs transition shadow flex items-center space-x-1">
-                        <span>🔐 Đăng Nhập Gmail Sửa Đề</span>
-                    </button>
-                </div>
+                <!-- Nút Đăng Nhập Quản Trị -->
+                <button id="admin-login-btn" onclick="openLoginModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs transition shadow">
+                    🔐 Quản Trị Sửa Đề
+                </button>
 
-                <!-- Khu vực sau khi Admin đã đăng nhập -->
-                <div id="admin-controls" class="hidden flex items-center space-x-2">
-                    <span id="admin-email-display" class="text-xs text-emerald-300 font-semibold bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-800"></span>
-                    <button onclick="exportJsonFile()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition shadow" title="Tải file .json đã chỉnh sửa">
-                        📥 Tải File Đề (.json)
-                    </button>
-                    <button onclick="logoutAdmin()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition shadow">
-                        🔒 Thoát
-                    </button>
-                </div>
+                <!-- Nút Tải JSON và Thoát (Hiện khi đăng nhập) -->
+                <button id="export-json-btn" onclick="exportJsonFile()" class="hidden bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition shadow" title="Tải file .json đã chỉnh sửa">
+                    📥 Tải File Đề (.json)
+                </button>
+                <button id="admin-logout-btn" onclick="logoutAdmin()" class="hidden bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition shadow">
+                    🔒 Thoát
+                </button>
 
                 <button onclick="resetExam()" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition shadow">
                     🔄 Thi Lại
@@ -122,6 +115,19 @@
         </aside>
     </div>
 
+    <!-- Modal Đăng Nhập Quản Trị -->
+    <div id="login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-700">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">🔑 Đăng Nhập Quản Trị</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Nhập mật khẩu quản trị:</p>
+            <input type="password" id="admin-pass-input" placeholder="Mật khẩu..." class="w-full text-sm p-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white mb-4 outline-none focus:ring-2 focus:ring-indigo-500">
+            <div class="flex justify-end space-x-3">
+                <button onclick="closeLoginModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">Hủy</button>
+                <button onclick="verifyAdminPassword()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Kết Quả -->
     <div id="result-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh] border border-slate-700 text-center transition-colors">
@@ -154,11 +160,6 @@
         let timerInterval = null;
         let timeLeft = 90 * 60;
         let isAdminMode = false;
-
-        // ==========================================
-        // THAY THẾ BẰNG EMAIL GMAIL QUẢN TRỊ CHÍNH XÁC CỦA THẦY
-        // ==========================================
-        const ADMIN_EMAIL = "bui907233@gmail.com"; // Thầy đổi lại email của mình nếu cần
 
         async function loadData(jsonFile) {
             document.getElementById('loading-box').style.display = 'block';
@@ -210,63 +211,45 @@
             document.getElementById('dark-mode-icon').textContent = isDark ? '☀️' : '🌙';
         }
 
-        // --- CẤU HÌNH ĐĂNG NHẬP GMAIL (GOOGLE SIGN-IN) ---
-        window.onload = function () {
-            initDarkMode();
-            loadData('de01.json');
-
-            // Khởi tạo Google Identity Services
-            // Lưu ý: Thầy có thể thay client_id mẫu bằng Google Client ID của riêng mình nếu tạo trên Google Cloud Console
-            google.accounts.id.initialize({
-                client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com", 
-                callback: handleGoogleResponse
-            });
-        };
-
-        function triggerGoogleLogin() {
-            // Hiển thị cửa sổ đăng nhập Google tự động
-            google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                    // Nếu popup bị chặn, mở giao diện đăng nhập OAuth mặc định
-                    alert("Thầy vui lòng cấu hình Google Client ID hoặc đăng nhập tài khoản quản trị!");
-                }
-            });
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('admin-pass-input').value = '';
+            document.getElementById('admin-pass-input').focus();
         }
 
-        // Hàm xử lý khi người dùng chọn tài khoản Google
-        function handleGoogleResponse(response) {
-            try {
-                // Giải mã JWT Token từ Google trả về để lấy Email
-                const base64Url = response.credential.split('.')[1];
-                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                }).join(''));
-                
-                const googleUser = JSON.parse(jsonPayload);
-                const userEmail = googleUser.email;
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
 
-                // Kiểm tra xem có đúng là Email quản trị của thầy không
-                if (userEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+        // Tự động tải file matkhau.json từ GitHub để kiểm tra mật khẩu động
+        async function verifyAdminPassword() {
+            const inputPass = document.getElementById('admin-pass-input').value;
+            try {
+                const res = await fetch('matkhau.json');
+                const data = await res.json();
+                
+                if (inputPass === data.admin_pass) {
                     isAdminMode = true;
-                    document.getElementById('admin-auth-container').classList.add('hidden');
-                    document.getElementById('admin-controls').classList.remove('hidden');
-                    document.getElementById('admin-email-display').textContent = `👤 ${userEmail}`;
+                    closeLoginModal();
+                    document.getElementById('admin-login-btn').classList.add('hidden');
+                    document.getElementById('export-json-btn').classList.remove('hidden');
+                    document.getElementById('admin-logout-btn').classList.remove('hidden');
                     renderQuestions();
-                    alert("Đăng nhập quản trị bằng Gmail thành công!");
+                    alert("Đăng nhập quản trị thành công!");
                 } else {
-                    alert(`Tài khoản (${userEmail}) không có quyền quản trị đề thi này!`);
+                    alert("Mật khẩu không chính xác!");
                 }
-            } catch (error) {
-                console.error("Lỗi xác thực Google:", error);
-                alert("Đăng nhập thất bại, vui lòng thử lại!");
+            } catch (err) {
+                console.error("Lỗi đọc mật khẩu:", err);
+                alert("Không thể kết nối đến file mật khẩu bảo mật!");
             }
         }
 
         function logoutAdmin() {
             isAdminMode = false;
-            document.getElementById('admin-auth-container').classList.remove('hidden');
-            document.getElementById('admin-controls').classList.add('hidden');
+            document.getElementById('admin-login-btn').classList.remove('hidden');
+            document.getElementById('export-json-btn').classList.add('hidden');
+            document.getElementById('admin-logout-btn').classList.add('hidden');
             renderQuestions();
             alert("Đã đăng xuất khỏi chế độ quản trị.");
         }
@@ -418,6 +401,11 @@
             document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
             loadData(document.getElementById('select-de').value);
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            loadData('de01.json');
+        });
     </script>
 </body>
 </html>
